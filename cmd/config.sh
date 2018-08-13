@@ -9,6 +9,11 @@ _EOF
 cmd_config() {
     ds inject ubuntu-fixes.sh
     ds inject set_prompt.sh
+    ds inject ssmtp.sh
     ds inject setup-services.sh
-    ds inject create-user.sh
+
+    # copy accounts.txt and testing scripts
+    [[ -f accounts.txt ]] || cp $APP_DIR/accounts.txt .
+
+    ds inject create-accounts.sh
 }
