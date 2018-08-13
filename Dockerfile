@@ -10,6 +10,8 @@ RUN apt install --yes \
     novnc websockify net-tools python-numpy \
     vnc4server
 
+RUN apt install --yes apache2
+
 ### Install firefox and chrome browser
 #RUN apt install --yes --install-recommends \
 #    firefox chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg
