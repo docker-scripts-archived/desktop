@@ -6,9 +6,7 @@
 addgroup student
 while IFS=: read user pass
 do
-    #user=$(echo $line | cut -f1 -d:)
-    #pass=$(echo $line | cut -f2 -d:)
-    #echo $user:$pass
+    echo $user:$pass
     useradd -d /home/$user -m -s /bin/bash -U  $user
     adduser $user student
     echo "$user:$pass" | chpasswd
