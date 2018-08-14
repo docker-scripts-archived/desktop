@@ -40,3 +40,6 @@ WantedBy = graphical.target
 EOF
 systemctl enable websockify.service
 systemctl start websockify.service
+
+### open vnc_auto.html by default
+ln -s /usr/share/novnc/{vnc,index}.html

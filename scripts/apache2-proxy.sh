@@ -6,17 +6,9 @@ source /host/settings.sh
 cat <<EOF > /etc/apache2/sites-available/desktop.conf
 <VirtualHost *:80>
     ServerName $DOMAIN
-    RedirectPermanent / https://$DOMAIN/
-</VirtualHost>
-
-<VirtualHost *:443>
-    ServerName $DOMAIN
     ProxyPass / http://127.0.0.1:6901/
-    SSLEngine on
-    SSLOptions +FakeBasicAuth +ExportCertData +StrictRequire
-    SSLCertificateFile        /etc/ssl/certs/ssl-cert-snakeoil.pem
-    SSLCertificateKeyFile   /etc/ssl/private/ssl-cert-snakeoil.key
-    #SSLCertificateChainFile  /etc/ssl/certs/ssl-cert-snakeoil.pem
+    ProxyPassReverse / http://127.0.0.1:6901/
+    ProxyRequests off
 </VirtualHost>
 EOF
 ### we need to refer to this apache2 config by the name "$DOMAIN.conf" as well
