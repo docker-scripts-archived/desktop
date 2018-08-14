@@ -11,6 +11,7 @@ RUN apt install --yes \
     vnc4server
 
 RUN apt install --yes apache2
+#RUN apt install --yes nginx
 
 ### Install firefox and chrome browser
 #RUN apt install --yes --install-recommends \
