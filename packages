@@ -1,0 +1,3 @@
+### Install firefox and chrome browser
+#RUN apt install --yes --install-recommends \
+#    firefox chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg

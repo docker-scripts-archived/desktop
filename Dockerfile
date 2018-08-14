@@ -13,6 +13,5 @@ RUN apt install --yes \
 RUN apt install --yes apache2
 #RUN apt install --yes nginx
 
-### Install firefox and chrome browser
-#RUN apt install --yes --install-recommends \
-#    firefox chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg
+### Install additional packages
+sinclude(packages)
