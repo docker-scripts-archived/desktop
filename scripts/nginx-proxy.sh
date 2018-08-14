@@ -15,7 +15,7 @@ server {
 
         location /websockify {
                 proxy_http_version 1.1;
-                proxy_pass http://127.0.0.1:6901/;
+                proxy_pass http://127.0.0.1:$WS_PORT/;
                 proxy_set_header Upgrade \$http_upgrade;
                 proxy_set_header Connection "upgrade";
 

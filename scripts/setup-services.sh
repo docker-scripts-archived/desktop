@@ -33,7 +33,7 @@ Description = start noVNC service
 After = syslog.target network.target
 
 [Service]
-ExecStart = /usr/bin/websockify --web=/usr/share/novnc/ 6901 localhost:5900
+ExecStart = /usr/bin/websockify --web=/usr/share/novnc/ $WS_PORT localhost:5900
 
 [Install]
 WantedBy = graphical.target

@@ -7,11 +7,11 @@ cat <<EOF > /etc/apache2/sites-available/desktop.conf
 <VirtualHost *:80>
     ServerName $DOMAIN
 
-    ProxyPass / http://127.0.0.1:6901/
-    ProxyPassReverse / http://127.0.0.1:6901/
+    ProxyPass / http://127.0.0.1:$WS_PORT/
+    ProxyPassReverse / http://127.0.0.1:$WS_PORT/
 
-    ProxyPass /websockify ws://127.0.0.1:6901/websockify retry=3
-    ProxyPassReverse /websockify ws://127.0.0.1:6901/websockify retry=3
+    ProxyPass /websockify ws://127.0.0.1:$WS_PORT/websockify retry=3
+    ProxyPassReverse /websockify ws://127.0.0.1:$WS_PORT/websockify retry=3
 
     ProxyRequests off
 </VirtualHost>
@@ -19,11 +19,11 @@ cat <<EOF > /etc/apache2/sites-available/desktop.conf
 # <VirtualHost _default_:443>
 #         ServerName $DOMAIN
 # 
-#     	ProxyPass / http://127.0.0.1:6901/
-#     	ProxyPassReverse / http://127.0.0.1:6901/
+#     	ProxyPass / http://127.0.0.1:$WS_PORT/
+#     	ProxyPassReverse / http://127.0.0.1:$WS_PORT/
 # 
-#     	ProxyPass /websockify ws://127.0.0.1:6901/websockify retry=3
-#     	ProxyPassReverse /websockify ws://127.0.0.1:6901/websockify retry=3
+#     	ProxyPass /websockify ws://127.0.0.1:$WS_PORT/websockify retry=3
+#     	ProxyPassReverse /websockify ws://127.0.0.1:$WS_PORT/websockify retry=3
 # 
 #         ProxyRequests off
 # 

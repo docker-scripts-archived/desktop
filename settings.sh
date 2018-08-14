@@ -4,7 +4,9 @@ APP=desktop
 IMAGE=desktop
 CONTAINER=desktop
 DOMAIN="desk.example.org"
-PORTS="6901:6901"
+
+WS_PORT=6901
+PORTS="$WS_PORT:$WS_PORT"
 
 ### VNC settings
 #VNC_PW=pass123
