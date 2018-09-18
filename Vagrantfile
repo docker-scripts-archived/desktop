@@ -2,7 +2,6 @@
 # vi: set ft=ruby :
 
 Vagrant.configure('2') do |config|
-  #config.vm.box = 'ubuntu/bionic32'
   config.vm.box = 'ltsp/linuxmint-19-xfce-32bit'
 
   config.vm.network 'forwarded_port', guest: 80, host: 80
@@ -15,9 +14,6 @@ Vagrant.configure('2') do |config|
     virtualbox.name = 'WebVNC'
   end
 
-  config.vm.boot_timeout = 600
-  config.vm.synced_folder '../', '/host', id: 'host'
-  config.vm.synced_folder './', '/vagrant', id: 'vagrant'
   config.vm.provision 'shell', path: 'install.sh'
 end
 
