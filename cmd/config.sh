@@ -15,7 +15,7 @@ cmd_config() {
     ds inject apache2-proxy.sh
     #ds inject nginx-proxy.sh
 
-    # copy accounts.txt and testing scripts
+    # copy accounts.txt
     [[ -f accounts.txt ]] || cp $APP_DIR/accounts.txt .
 
     ds inject create-accounts.sh

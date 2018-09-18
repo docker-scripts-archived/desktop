@@ -39,3 +39,11 @@ ds start
 ds shell
 ds help
 ```
+
+## Installing in a VirtualBox machine (with vagrant)
+
+- Install vagrant: https://www.vagrantup.com/
+- Get the code: `git clone https://github.com/docker-scripts/desktop vnc`
+- Start the virtual machine: `cd vnc/vb/ && vagrant up`
+- Connect with a VNC client on `127.0.0.1:0` or with a browser on
+  http://127.0.0.1:6901 or http://127.0.0.1/?port=6901
