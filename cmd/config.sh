@@ -11,9 +11,7 @@ cmd_config() {
     ds inject set_prompt.sh
     ds inject ssmtp.sh
 
-    ds inject setup-services.sh
-    ds inject apache2-proxy.sh
-    #ds inject nginx-proxy.sh
+    ds inject guacamole.sh
 
     # copy accounts.txt
     [[ -f accounts.txt ]] || cp $APP_DIR/accounts.txt .
