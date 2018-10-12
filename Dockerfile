@@ -38,6 +38,10 @@ Pin-Priority: 500\n\
 RUN apt update &&\
     apt upgrade --yes
 
+### fix a LinuxMint bug
+RUN apt install --yes --allow-downgrades base-files/bionic-updates &&\
+    echo "base-files hold" | dpkg --set-selections
+
 ### install the desktop and display manager
 RUN DEBIAN_FRONTEND=noninteractive \
     apt install --yes \
