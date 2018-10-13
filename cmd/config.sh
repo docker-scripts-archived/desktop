@@ -16,5 +16,6 @@ cmd_config() {
     # copy accounts.txt
     [[ -f accounts.txt ]] || cp $APP_DIR/accounts.txt .
 
-    ds inject create-accounts.sh
+    ds inject config-accounts.sh
+    ds inject users.sh create /host/accounts.txt
 }
