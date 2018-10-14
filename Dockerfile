@@ -45,13 +45,9 @@ RUN apt install --yes --allow-downgrades base-files/bionic-updates &&\
 ### install the desktop and display manager
 RUN DEBIAN_FRONTEND=noninteractive \
     apt install --yes \
-        mint-meta-xfce lightdm lightdm-settings slick-greeter
+        lightdm lightdm-settings slick-greeter \
+        mint-meta-xfce mint-meta-mate
 RUN systemctl set-default graphical.target
-
-# ### install the desktop and display manager
-# RUN DEBIAN_FRONTEND=noninteractive \
-#     apt install --yes xubuntu-core lightdm
-# RUN systemctl set-default graphical.target
 
 ### install x2go server
 RUN apt install --yes x2goserver
