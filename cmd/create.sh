@@ -10,6 +10,7 @@ rename_function cmd_create orig_cmd_create
 cmd_create() {
     mkdir -p home/
     orig_cmd_create \
-	--mount type=bind,src=/dev,dst=/dev \
+        --mount type=bind,src="$APP_DIR/scripts",dst=/app-scripts \
+        --mount type=bind,src=/dev,dst=/dev \
         "$@"    # accept additional options, e.g.: -p 2201:22
 }

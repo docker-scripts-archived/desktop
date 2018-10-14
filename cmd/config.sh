@@ -11,11 +11,15 @@ cmd_config() {
     ds inject set_prompt.sh
     ds inject ssmtp.sh
 
-    ds inject guacamole.sh
+    [[ -n $GUAC_ADMIN ]] && ds inject guacamole.sh
 
-    # copy accounts.txt
-    [[ -f accounts.txt ]] || cp $APP_DIR/accounts.txt .
+    if [[ -n $ADMIN_USER ]]; then
+	ds exec bash -c "echo $ADMIN_USER:'$ADMIN_PASS' | /app-scripts/users.sh create"
+	ds inject make-admin.sh $ADMIN_USER
+    fi
 
     ds inject config-accounts.sh
+    [[ -f accounts.txt ]] || cp $APP_DIR/accounts.txt .
     ds inject users.sh create /host/accounts.txt
+    ds inject login.sh
 }

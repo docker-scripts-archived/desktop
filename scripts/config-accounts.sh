@@ -2,12 +2,12 @@
 ### Setup configuration of the new accounts.
 
 ### create a group for student accounts
-addgroup student --gid=1000
+addgroup student --gid=999
 
 ### make new accounts belong to the student group
 sed -i /etc/adduser.conf \
     -e '/^USERGROUPS=/ c USERGROUPS=no' \
-    -e '/^USERS_GID=/ c USERS_GID=1000' \
+    -e '/^USERS_GID=/ c USERS_GID=999' \
     -e '/^DIR_MODE=/ c DIR_MODE=0700'
 
 ### customize .bashrc of new accounts

@@ -20,7 +20,7 @@ main() {
     setup_xrdp
     setup_apache
     #setup_nginx
-    ram_optimizations
+    #ram_optimizations
 }
 
 random_pass() {
