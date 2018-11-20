@@ -22,4 +22,9 @@ cmd_config() {
     [[ -f accounts.txt ]] || cp $APP_DIR/accounts.txt .
     ds inject users.sh create /host/accounts.txt
     ds inject login.sh
+
+    # get a letsencrypt ssl certificate
+    local email=$GMAIL_ADDRESS
+    [[ -n $SMTP_DOMAIN ]] && email="admin@$SMTP_DOMAIN"
+    ds @wsproxy get-ssl-cert $email $DOMAIN
 }

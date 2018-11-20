@@ -1,8 +1,8 @@
 APP=desktop
 
 ### Docker settings.
-IMAGE=desktop
-CONTAINER=desktop
+IMAGE=desk.example.org
+CONTAINER=desk.example.org
 DOMAIN="desk.example.org"
 
 WS_PORT=6901                         # websocket port for WebVNC
