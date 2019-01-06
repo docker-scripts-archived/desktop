@@ -13,6 +13,7 @@ main() {
     install_server $release
     install_client $release
     install_mysql_auth $release $mysql_pass
+    setup_guacamole_db
     config_guacamole_properties $mysql_pass
     config_user_mapping
 
@@ -172,6 +173,72 @@ EOF
 
     # return $mysql_pass
     echo $mysql_pass
+}
+
+setup_guacamole_db() {
+    local mysql='mysql --defaults-file=/etc/mysql/debian.cnf guacamole_db'
+
+    # create connections
+    $mysql -e "
+        INSERT INTO guacamole_connection
+            (connection_name, protocol)
+        VALUES
+            ('RDP', 'rdp'),
+            ('VNC', 'vnc'),
+            ('SSH', 'ssh');
+
+        INSERT INTO guacamole_connection_parameter
+        VALUES
+            (1, 'hostname', '127.0.0.1'),
+            (2, 'hostname', '127.0.0.1'),
+            (3, 'hostname', '127.0.0.1');
+
+        INSERT INTO guacamole_sharing_profile
+            (sharing_profile_name, primary_connection_id)
+        VALUES
+            ('Watch', 1),
+            ('Watch', 2),
+            ('Watch', 3),
+            ('Collaborate', 1),
+            ('Collaborate', 2),
+            ('Collaborate', 3);
+
+        INSERT INTO guacamole_sharing_profile_parameter
+        VALUES
+            (1, 'read-only', 'true'),
+            (2, 'read-only', 'true'),
+            (3, 'read-only', 'true');
+    "
+
+    # create a user
+    [[ -n $GUAC_USER_NAME ]] || return
+    $mysql -e "
+        SET @salt = UNHEX(SHA2(UUID(), 256));
+        INSERT INTO guacamole_user
+        SET username = '$GUAC_USER_NAME',
+            password_hash = UNHEX(SHA2(CONCAT('$GUAC_USER_PASS', HEX(@salt)), 256)),
+            password_salt = @salt,
+            password_date = NOW();
+
+        INSERT INTO guacamole_user_permission
+        VALUES
+            (2,2,'READ');
+
+        INSERT INTO guacamole_connection_permission
+        VALUES
+            (2,1,'READ'),
+            (2,2,'READ'),
+            (2,3,'READ');
+
+        INSERT INTO guacamole_sharing_profile_permission
+        VALUES
+            (2,1,'READ'),
+            (2,2,'READ'),
+            (2,3,'READ'),
+            (2,4,'READ'),
+            (2,5,'READ'),
+            (2,6,'READ');
+    "
 }
 
 config_guacamole_properties() {

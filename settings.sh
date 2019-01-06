@@ -25,6 +25,8 @@ ADMIN_PASS="pass"
 # Comment out to disable installing Guacamole.
 GUAC_ADMIN="admin"
 GUAC_PASS="pass"
+GUAC_USER_NAME="student"
+GUAC_USER_PASS="student"
 
 ### SMTP server for sending notifications. You can build an SMTP server
 ### as described here:
