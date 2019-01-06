@@ -8,10 +8,10 @@ RUN apt update &&\
     apt upgrade --yes
 
 ### add LinuxMint repository
-RUN echo "deb http://packages.linuxmint.com tara main upstream import backport" \
+RUN echo "deb http://packages.linuxmint.com tessa main upstream import backport" \
     > /etc/apt/sources.list.d/linuxmint.list
 RUN apt install --yes gnupg &&\
-    apt-key adv --recv-key A6616109451BBBF2
+    apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-key A6616109451BBBF2
 
 ### setup apt preferences
 RUN echo "\
