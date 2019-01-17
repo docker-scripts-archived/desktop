@@ -64,5 +64,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
         gcc-6 dpkg-dev tomcat8 vnc4server apache2 git \
         xrdp xorgxrdp xrdp-pulseaudio-installer pulseaudio
 
+### add /usr/games on the PATH
+RUN echo 'export PATH=/usr/games:$PATH' >  /etc/profile.d/path.sh
+
 ### install additional packages
 sinclude(packages)

@@ -1,0 +1,12 @@
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt install --yes \
+        ubuntu-edu-preschool ubuntu-edu-primary \
+        kdegames kdeedu \
+        sgt-puzzles \
+        hex-a-hop atomix gweled \
+        gbrainy brainparty amoebax lbreakout2 \
+        berusky flare tuxpuck pathological \
+        lmemory xsol picmi vodovod \
+        koules frozen-bubble pingus enigma
+
+RUN echo 'export PATH=/usr/games:$PATH' >  /etc/profile.d/path.sh
